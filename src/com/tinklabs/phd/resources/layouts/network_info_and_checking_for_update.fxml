@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<BorderPane id="BorderPane" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/2.2">
+    <right>
+
+        <Text fx:id="close" text="X"/>
+    </right>
+    <center>
+        <VBox fx:id="vbox" alignment="CENTER">
+            <children>
+                <VBox fx:id="dynamic_info_container"></VBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="20" fitWidth="20">
+                            <image>
+                                <Image url="@../drawables/loading.gif"/>
+                            </image>
+                        </ImageView>
+                        <Text text=" Checking For Update..."
+                        />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

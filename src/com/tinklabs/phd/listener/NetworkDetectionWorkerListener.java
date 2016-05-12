@@ -1,6 +1,6 @@
 package com.tinklabs.phd.listener;
 
-import javax.swing.*;
+import com.tinklabs.phd.model.NetworkState;
 
 /**
  * Created by root on 5/12/16.
@@ -8,7 +8,4 @@ import javax.swing.*;
 public interface NetworkDetectionWorkerListener {
     public void onNetworkDetectionComplete(NetworkState state);
 
-    public enum NetworkState {
-        CONNECTED, DISCONNECTED;
-    }
 }
