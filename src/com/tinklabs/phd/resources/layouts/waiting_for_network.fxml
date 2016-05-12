@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<BorderPane id="BorderPane" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/2.2">
+    <right>
+
+        <Text fx:id="close" text="X"/>
+    </right>
+    <center>
+        <VBox id="vbox" alignment="CENTER">
+            <children>
+                <ImageView>
+                    <image>
+                        <Image url="@../drawables/loading.gif"/>
+                    </image>
+                </ImageView>
+                <Text text="Waiting for network..."
+                />
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>
