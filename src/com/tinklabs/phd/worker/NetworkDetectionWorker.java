@@ -1,5 +1,6 @@
 package com.tinklabs.phd.worker;
 
+import com.tinklabs.phd.config.Config;
 import com.tinklabs.phd.listener.NetworkDetectionWorkerListener;
 import com.tinklabs.phd.model.NetworkState;
 import com.tinklabs.phd.network.BaseNetworkRequest;
@@ -39,20 +40,25 @@ public class NetworkDetectionWorker extends SwingWorker<NetworkState, Void> {
                 if (n != null && n.hasMoreElements()) {
                     network = n.nextElement();
                     Enumeration<InetAddress> a = network.getInetAddresses();
-                    if (a != null && a.hasMoreElements()) {
+                    while (a != null && a.hasMoreElements()) {
                         IP = a.nextElement();
+                        if (Config.Network.getLocalNetworkAddressClassType().isInstance(IP))break;
                     }
                 }
-                if (IP != null)
-                    networkState.ipAddress = IP.getHostAddress();
 
-                byte[] mac = network.getHardwareAddress();
-                if (!Validations.isEmptyOrNull(mac)) {
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < mac.length; i++) {
-                        sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+                if (IP != null) {
+                    networkState.ipAddress = IP.getHostAddress();
+                }
+
+                if (network != null) {
+                    byte[] mac = network.getHardwareAddress();
+                    if (!Validations.isEmptyOrNull(mac)) {
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < mac.length; i++) {
+                            sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+                        }
+                        networkState.macAddress = sb.toString();
                     }
-                    networkState.macAddress = sb.toString();
                 }
 
                 //TODO Add Serial and any other info

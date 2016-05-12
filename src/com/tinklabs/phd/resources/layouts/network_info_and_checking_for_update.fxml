@@ -15,7 +15,7 @@
     <center>
         <VBox fx:id="vbox" alignment="CENTER">
             <children>
-                <VBox fx:id="dynamic_info_container"></VBox>
+                <VBox fx:id="dynamic_info_container"  alignment="CENTER"></VBox>
                 <HBox alignment="CENTER">
                     <children>
                         <ImageView fitHeight="20" fitWidth="20">
