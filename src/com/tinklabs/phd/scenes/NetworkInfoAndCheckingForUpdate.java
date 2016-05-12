@@ -35,12 +35,7 @@ public class NetworkInfoAndCheckingForUpdate extends Scene {
             pane = loader.load();
             Map<String, Object> fxmlNamespace = loader.getNamespace();
             Text close = (Text) fxmlNamespace.get("close");
-            close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    Platform.exit();
-                }
-            });
+            close.setOnMouseClicked(event -> Platform.exit());
             VBox vbox = (VBox) fxmlNamespace.get("vbox");
             VBox dynamic_info_container = (VBox) fxmlNamespace.get("dynamic_info_container");
             if (!Validations.isEmptyOrNull(state.ipAddress))
