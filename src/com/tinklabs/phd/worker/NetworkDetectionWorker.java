@@ -27,6 +27,7 @@ public class NetworkDetectionWorker extends SwingWorker<NetworkState, Void> {
 
     @Override
     protected NetworkState doInBackground() throws Exception {
+
         NetworkState networkState = new NetworkState();
         String response = null;
         int cumulated_waiting_time = 0;

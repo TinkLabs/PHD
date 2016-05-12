@@ -30,13 +30,7 @@ public class WaitingForNetworkScene extends Scene {
             loader = new FXMLLoader(main.getClass().getResource("resources/layouts/waiting_for_network.fxml"));
             pane = loader.load();
             Map<String, Object> fxmlNamespace = loader.getNamespace();
-            Text close = (Text) fxmlNamespace.get("close");
-            close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    Platform.exit();
-                }
-            });
+
 
         } catch (Exception e) {
             e.printStackTrace();

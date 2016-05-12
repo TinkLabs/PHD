@@ -1,15 +1,18 @@
 package com.tinklabs.phd;
 
-import com.tinklabs.phd.listener.NetworkDetectionWorkerListener;
+import com.tinklabs.phd.config.Config;
 import com.tinklabs.phd.model.NetworkState;
-import com.tinklabs.phd.scenes.NetworkInfoAndCheckingForUpdate;
+import com.tinklabs.phd.model.UpdateInfo;
+import com.tinklabs.phd.scenes.NetworkInfoAndCheckingForUpdateScene;
+import com.tinklabs.phd.scenes.UpdateInfoScene;
 import com.tinklabs.phd.scenes.WaitingForNetworkScene;
+import com.tinklabs.phd.worker.CheckUpdateWorker;
 import com.tinklabs.phd.worker.NetworkDetectionWorker;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Main extends Application {
     public static final double DEFAULT_WIDTH = 300;
@@ -21,7 +24,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(Config.PREFERRED_WINDOW_DECORATION_STYLE);
+        primaryStage.setResizable(false);
         setSceneAndShow(new WaitingForNetworkScene(this));
         startNetworkDetection();
     }
@@ -43,9 +47,34 @@ public class Main extends Application {
         }).execute();
     }
 
-    private void proceedToNetworkInfoAndCheckingUpdateScreen(NetworkState state) {
-        setSceneAndShow(new NetworkInfoAndCheckingForUpdate(state,this));
+    private void startUpdateCheck() {
+        new CheckUpdateWorker(updateInfo -> {
+            if (updateInfo != null) {
+                switch (updateInfo.currentUpdates) {
+                    case NO_UPDATE:
+                        proceedToUpdateInfoScreen(updateInfo);
+                    case HAS_UPDATE:
+                }
+            }
+        }).execute();
+    }
 
+    private void proceedToUpdateInfoScreen(UpdateInfo updateInfo) {
+        if (updateInfo != null) {
+            setSceneAndShow(new UpdateInfoScene(updateInfo, this));
+        }
+    }
+
+    private void proceedToNetworkInfoAndCheckingUpdateScreen(NetworkState state) {
+        if (state != null) {
+            setSceneAndShow(new NetworkInfoAndCheckingForUpdateScene(state, this));
+            startUpdateCheck();
+        }
+    }
+
+    public void proceedToButningScreen(UpdateInfo updateInfo) {
+        if (updateInfo != null) {
+        }
     }
 
     private void showNoConnectionTryLaterScreen() {
@@ -60,8 +89,8 @@ public class Main extends Application {
 
     public void setSceneAndShow(Scene scene) {
         if (scene != null && primaryStage != null) {
-            primaryStage.setScene(scene);
             primaryStage.show();
+            primaryStage.setScene(scene);
         }
     }
 
@@ -83,4 +112,6 @@ public class Main extends Application {
     public double getHeight() {
         return height;
     }
+
+
 }

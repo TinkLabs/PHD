@@ -20,9 +20,9 @@ import java.util.Set;
 /**
  * Created by root on 5/11/16.
  */
-public class NetworkInfoAndCheckingForUpdate extends Scene {
+public class NetworkInfoAndCheckingForUpdateScene extends Scene {
 
-    public NetworkInfoAndCheckingForUpdate(NetworkState state, Main main) {
+    public NetworkInfoAndCheckingForUpdateScene(NetworkState state, Main main) {
         super(init(state, main), main.getWidth(), main.getHeight());
     }
 
@@ -34,8 +34,7 @@ public class NetworkInfoAndCheckingForUpdate extends Scene {
             loader = new FXMLLoader(main.getClass().getResource("resources/layouts/network_info_and_checking_for_update.fxml"));
             pane = loader.load();
             Map<String, Object> fxmlNamespace = loader.getNamespace();
-            Text close = (Text) fxmlNamespace.get("close");
-            close.setOnMouseClicked(event -> Platform.exit());
+
             VBox vbox = (VBox) fxmlNamespace.get("vbox");
             VBox dynamic_info_container = (VBox) fxmlNamespace.get("dynamic_info_container");
             if (!Validations.isEmptyOrNull(state.ipAddress))

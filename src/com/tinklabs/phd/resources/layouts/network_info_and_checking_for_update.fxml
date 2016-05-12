@@ -8,10 +8,7 @@
 <?import javafx.scene.text.Text?>
 <BorderPane id="BorderPane" xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/2.2">
-    <right>
 
-        <Text fx:id="close" text="X"/>
-    </right>
     <center>
         <VBox fx:id="vbox" alignment="CENTER">
             <children>
