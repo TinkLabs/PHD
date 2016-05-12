@@ -1,14 +1,11 @@
 package com.tinklabs.phd;
 
+import com.tinklabs.phd.listener.NetworkDetectionWorkerListener;
 import com.tinklabs.phd.scenes.WaitingForNetworkScene;
+import com.tinklabs.phd.worker.NetworkDetectionWorker;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,6 +18,20 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         primaryStage.initStyle(StageStyle.UNDECORATED);
         setSceneAndShow(new WaitingForNetworkScene(this));
+        startNetworkDetection();
+    }
+
+    private void startNetworkDetection() {
+        new NetworkDetectionWorker(new NetworkDetectionWorkerListener() {
+            @Override
+            public void onNetworkDetectionComplete(NetworkState state) {
+                if (state != null && state == NetworkState.CONNECTED){
+
+                }else{
+                    //RETRY (Since it is only a check, not a listner)
+                }
+            }
+        }).execute();
     }
 
     public void setTitle(String title) {
@@ -41,7 +52,6 @@ public class Main extends Application {
             setSceneAndShow(new Scene(root, 300, 275));
         }
     }
-
 
 
     public static void main(String[] args) {

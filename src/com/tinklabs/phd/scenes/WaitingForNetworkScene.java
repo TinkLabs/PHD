@@ -42,7 +42,6 @@ public class WaitingForNetworkScene extends Scene {
             e.printStackTrace();
         }
         main.setTitle("PHD - Waiting for network");
-
         return pane;
     }
 }
