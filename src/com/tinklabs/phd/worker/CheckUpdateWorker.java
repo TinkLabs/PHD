@@ -27,7 +27,7 @@ public class CheckUpdateWorker extends SwingWorker<UpdateInfo, Void> {
             {
                 Thread.sleep(5000);
                 updateState = new UpdateInfo();
-                updateState.currentUpdates = UpdateInfo.UpdateState.HAS_UPDATE;// new Random().nextInt(2) == 1 ? UpdateInfo.UpdateState.HAS_UPDATE : UpdateInfo.UpdateState.NO_UPDATE;
+                updateState.currentUpdates = UpdateInfo.UpdateState.NO_UPDATE;// new Random().nextInt(2) == 1 ? UpdateInfo.UpdateState.HAS_UPDATE : UpdateInfo.UpdateState.NO_UPDATE;
             }
         } catch (Throwable t) {
         }

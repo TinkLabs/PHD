@@ -2,6 +2,8 @@ package com.tinklabs.phd.scenes;
 
 import com.tinklabs.phd.Main;
 import com.tinklabs.phd.model.DownloadWorkerResult;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 
 import java.util.Map;
 
@@ -39,7 +42,7 @@ public class PostUpdateDownloadScene extends Scene {
                         downloads_completion_status.setText("Please Wait");
                         retry.setVisible(false);
                         main.setTitle("PHD - Downloads Successful");
-                        main.restartDevice();
+                        new Timeline(new KeyFrame(Duration.millis(5000), ae -> main.restartDevice())).play();
                         break;
                     case DOWNLOADS_UNSUCCESSFUL:
                         downloads_completion_status.setText("Downloading updates \nunsuccessful");

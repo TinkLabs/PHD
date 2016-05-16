@@ -3,12 +3,10 @@ package com.tinklabs.phd.scenes;
 import com.tinklabs.phd.Main;
 import com.tinklabs.phd.model.UpdateInfo;
 import com.tinklabs.phd.util.Validations;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -41,15 +39,8 @@ public class UpdateInfoScene extends Scene {
                 dynamic_info_container.getChildren().add(new Text("Version : " + updateInfo.version));
             if (!Validations.isEmptyOrNull(updateInfo.date))
                 dynamic_info_container.getChildren().add(new Text("Date : " + updateInfo.date));
-
             Button next = (Button) fxmlNamespace.get("next");
-            next.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    main.proceedToBurningScreen(updateInfo);
-                }
-            });
-
+            next.setOnMouseClicked(event -> main.proceedToBurningScreen(updateInfo));
 
         } catch (Exception e) {
             e.printStackTrace();
