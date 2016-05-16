@@ -17,8 +17,13 @@ public class USBPort extends PortsInfo.Port {
 
     @Override
     public Node getNode() {
-        Text text = new Text("USB " + (index + 1));
+        Text text = new Text(getDescription());
         text.setStyle("-fx-font-weight: bold; -fx-font-size: 16");
         return text;
+    }
+
+    @Override
+    public String getDescription() {
+        return "USB " + (index + 1);
     }
 }

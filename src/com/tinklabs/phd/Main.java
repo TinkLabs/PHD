@@ -3,15 +3,11 @@ package com.tinklabs.phd;
 import com.tinklabs.phd.config.Config;
 import com.tinklabs.phd.listener.DownloadWorkerListener;
 import com.tinklabs.phd.listener.PortDetectionTaskListener;
-import com.tinklabs.phd.model.DownloadWorkerResult;
-import com.tinklabs.phd.model.NetworkState;
-import com.tinklabs.phd.model.UpdateInfo;
+import com.tinklabs.phd.listener.PortFlashingListener;
+import com.tinklabs.phd.model.*;
 import com.tinklabs.phd.scenes.*;
 import com.tinklabs.phd.util.RuntimeUtils;
-import com.tinklabs.phd.worker.CheckUpdateWorker;
-import com.tinklabs.phd.worker.DownloadWorker;
-import com.tinklabs.phd.worker.NetworkDetectionWorker;
-import com.tinklabs.phd.worker.PortDetectionTask;
+import com.tinklabs.phd.worker.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -92,7 +88,8 @@ public class Main extends Application {
     }
 
     public void proceedToBurningScreen(UpdateInfo updateInfo) {
-        if (updateInfo != null) {
+        /*if (updateInfo != null) */
+        {
             setSceneAndShow(new USBDetectionScene(this));
         }
     }
@@ -147,7 +144,17 @@ public class Main extends Application {
     }
 
     public void startUSBDetectionTask(PortDetectionTaskListener portDetectionTaskListener) {
-new PortDetectionTask(portDetectionTaskListener).execute();
+        new PortDetectionTask(portDetectionTaskListener).execute();
+    }
+
+    public void switchToFlashingScreen(PortDetectionResult result) {
+        setSceneAndShow(new FlashingScene(this, result));
+    }
+
+    public void startNewPortFlashingTask(PortsInfo.Port port, PortFlashingListener portFlashingListener) {
+        if (port != null) {
+            new FlashingTask(port, portFlashingListener).execute();
+        }
     }
 
     public abstract class MainDownloadListener implements DownloadWorkerListener {

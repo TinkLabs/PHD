@@ -30,8 +30,8 @@ public class PortDetectionTask extends SwingWorker<PortDetectionResult, PortsInf
     protected PortDetectionResult doInBackground() throws Exception {
         //TODO: replace with real logic
         PortDetectionResult portDetectionResult = new PortDetectionResult();
-        for (int i = 0; i < 4; i++) {
-            Thread.sleep(3000);
+        for (int i = 0; i < 20; i++) {
+            Thread.sleep(1000);
             USBPort usbPort = new USBPort();
             usbPort.id = "USB00" + i;
             usbPort.index = i;

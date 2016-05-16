@@ -10,12 +10,20 @@ import java.util.ArrayList;
 public class PortsInfo {
     public ArrayList<Port> port = new ArrayList<>();
 
+    public enum Status {
+        INPROGRESS, SUCESSS, FAILURE, IDLE;
+    }
+
     public static abstract class Port {
         public String id;
         public int index;
+        public transient Status status;
+        public transient double percent_done;
 
         public abstract String getType();
 
         public abstract Node getNode();
+
+        public abstract String getDescription();
     }
 }
