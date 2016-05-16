@@ -20,7 +20,11 @@
 
         <HBox>
             <children>
-                <VBox  minWidth="250" fx:id="port_list"/>
+                <VBox minWidth="250" fx:id="port_list" spacing="5" alignment="TOP_CENTER">
+                    <padding>
+                        <Insets bottom="5" left="5" right="5" top="5"/>
+                    </padding>
+                </VBox>
                 <ImageView fitWidth="250" preserveRatio="true">
                     <Image url="@../drawables/recovery.png"/>
                 </ImageView>
