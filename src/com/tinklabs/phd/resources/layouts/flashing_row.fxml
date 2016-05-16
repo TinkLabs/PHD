@@ -3,36 +3,43 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<HBox fx:id="hbox" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1"
-      maxHeight="30"
-      xmlns="http://javafx.com/javafx/2.2">
+<GridPane fx:id="hbox" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1"
+          maxHeight="30"
+          xmlns="http://javafx.com/javafx/2.2">
     <children>
-        <Text fx:id="port_id">
-            <VBox.margin>
+        <Text fx:id="port_id" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <GridPane.margin>
                 <Insets bottom="5" left="5" right="5" top="5"/>
-            </VBox.margin>
+            </GridPane.margin>
             <font>
                 <Font style="bold" size="16.0"/>
             </font>
 
         </Text>
 
-        <ProgressBar fx:id="progress">
-            <VBox.margin>
+        <ProgressBar fx:id="progress" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <GridPane.margin>
                 <Insets bottom="5" left="5" right="5" top="5"/>
-            </VBox.margin>
+            </GridPane.margin>
         </ProgressBar>
 
         <ImageView fx:id="status_image" fitHeight="30"
-                   preserveRatio="true"
+                   preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="0"
         >
-            <VBox.margin>
+            <GridPane.margin>
                 <Insets bottom="5" left="5" right="5" top="5"/>
-            </VBox.margin>
+            </GridPane.margin>
         </ImageView>
     </children>
-</HBox>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+</GridPane>

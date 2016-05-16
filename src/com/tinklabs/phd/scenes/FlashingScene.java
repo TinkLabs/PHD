@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -43,7 +43,7 @@ public class FlashingScene extends Scene {
             if (result != null && !Validations.isEmptyOrNull(result.portsInfo.port)) {
                 for (PortsInfo.Port port : result.portsInfo.port) {
                     loader = new FXMLLoader(main.getClass().getResource("resources/layouts/flashing_row.fxml"));
-                    HBox list_item = loader.load();
+                    GridPane list_item = loader.load();
                     Map<String, Object> list_item_namespace = loader.getNamespace();
                     Text list_item_port = (Text) list_item_namespace.get("port_id");
                     list_item_port.setText(port.getDescription());

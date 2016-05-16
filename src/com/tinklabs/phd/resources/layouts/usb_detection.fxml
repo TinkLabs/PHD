@@ -21,7 +21,7 @@
             </font>
         </Text>
 
-        <HBox maxWidth="300" minWidth="300" maxHeight="180" minHeight="180"
+        <HBox maxWidth="300" minWidth="300" maxHeight="170" minHeight="180" alignment="CENTER"
         >
             <children>
                 <ScrollPane fx:id="scrollpane" maxWidth="150" minWidth="150" hbarPolicy="NEVER"

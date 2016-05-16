@@ -7,7 +7,6 @@ import javafx.application.Platform;
 
 import javax.swing.*;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by root on 5/16/16.
@@ -34,10 +33,11 @@ public class FlashingTask extends SwingWorker<PortsInfo.Port, PortsInfo.Port> {
     protected PortsInfo.Port doInBackground() throws Exception {
         //TODO Replace with real logic
         if (mPort != null) {
-            while (mPort.percent_done < 1)
+            while (mPort.percent_done < 1) {
                 mPort.percent_done += 0.05;
-            Thread.sleep(2000);
-            publish(mPort);
+                Thread.sleep(2000);
+                publish(mPort);
+            }
         }
         mPort.status = PortsInfo.Status.SUCESSS;//new Random().nextInt(100) % 3 == 0 ? PortsInfo.Status.FAILURE : PortsInfo.Status.SUCESSS;
         return mPort;
