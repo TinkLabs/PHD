@@ -3,7 +3,6 @@ package com.tinklabs.phd.scenes;
 import com.tinklabs.phd.Main;
 import com.tinklabs.phd.model.UpdateInfo;
 import com.tinklabs.phd.util.Validations;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -47,7 +46,7 @@ public class UpdateInfoScene extends Scene {
             next.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    main.proceedToButningScreen(updateInfo);
+                    main.proceedToBurningScreen(updateInfo);
                 }
             });
 
@@ -55,7 +54,7 @@ public class UpdateInfoScene extends Scene {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        main.setTitle("PHD - Checking For Update");
+        main.setTitle("PHD - Latest Version");
         return pane;
     }
 }

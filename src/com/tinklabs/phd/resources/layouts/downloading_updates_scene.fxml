@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane id="BorderPane" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/2.2">
+    <top>
+        <VBox alignment="CENTER">
+            <children>
+                <Text text="Downloading Updates">
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </VBox.margin>
+                    <font>
+                        <Font style="bold" size="16.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="update_counter"/>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <VBox fx:id="vbox" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20.0"/>
+            </padding>
+            <children>
+                <VBox fx:id="dynamic_info_container" alignment="CENTER"></VBox>
+                <Text fx:id="filename"/>
+                <Text fx:id="url"/>
+                <Text fx:id="percentage_done"/>
+                <ProgressBar fx:id="progress_bar">
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </VBox.margin>
+                </ProgressBar>
+
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

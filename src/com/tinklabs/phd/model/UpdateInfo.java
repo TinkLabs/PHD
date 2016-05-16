@@ -13,9 +13,9 @@ public class UpdateInfo {
     public String model = "M370";
     public String version = "6.045";
     public String date = "2016-04-27";
-    ArrayList<UpdateData> updateDatas = new ArrayList<UpdateData>() {
+    public ArrayList<UpdateData> updateDatas = new ArrayList<UpdateData>() {
         {
-
+            add(new UpdateData("Handgouts", 2300, "axsdxnkl", "http://www.google.com/"));
         }
     };
 
@@ -24,15 +24,18 @@ public class UpdateInfo {
     }
 
     public static class UpdateData {
-        String file_name;
-        String file_length;
-        String md5sum;
-        String url;
+        public String file_name;
+        public long file_length;
+        public String md5sum;
+        public String url;
+        public transient long done;
+        public transient int current = 1;
+        public transient int total = 1;
 
         public UpdateData() {
         }
 
-        public UpdateData(String file_name, String file_length, String md5sum, String url) {
+        public UpdateData(String file_name, long file_length, String md5sum, String url) {
             this.file_name = file_name;
             this.file_length = file_length;
             this.md5sum = md5sum;
